@@ -30,6 +30,10 @@ function createTable() {
     var array = getInputValue();
     var $tr = $('#table-item');
 
+    $tr.find('td').remove();
+
+    $('h4').text('Сортировка чисел');
+
     for (var i = 0; i < array.length; i++) {
         $tr.append('<td>' + array[i] + '</td>')
     }
@@ -48,7 +52,7 @@ function checkElements(item1, item2) {
 
 function sortTable() {
     //todo сжечь огнем
-    $('#input-src').val('88, 13, 87, 18, 54, 48, 7, 47, 65, 59');
+    // $('#input-src').val('88, 13, 87, 18, 54, 48, 7, 47, 65, 59');
     createTable();
 
     var $arrayTd = $('#table-sort').find('td');
@@ -112,6 +116,11 @@ $(function () {
     $('#button-generate').click(function () {
         var array = getRandomArray();
         $('#input-src').val(array.join(', '));
+    });
+
+    $('#sorted-form').submit(function (e) {
+        e.preventDefault();
+        sortTable();
     });
 
 
