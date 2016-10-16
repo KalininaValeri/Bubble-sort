@@ -9,7 +9,7 @@
 <body>
 <main class="container">
     <h1 class="text-center">Сортировка пузырком</h1>
-    <section>
+    <form>
 
         <div class="form-group has-feedback">
             <label class="control-label" for="input-src">Введите целые числа церез запятую</label>
@@ -23,14 +23,14 @@
             <span id="inputError2Status" class="sr-only">(error)</span>
             <p class="text-danger">Не верно введены числа, запишитье через запятую</p>
         </div>
-        <button type="button" class="btn btn-success">Сортировать</button>
+        <button type="submit" class="btn btn-success">Сортировать</button>
         <p class="text-danger">Введите целые числа или сгенерируйте</p>
 
-    </section>
+    </form>
     <section>
         <article>
-            <h4>Этап 1</h4>
-            <table class="table table-bordered">
+            <h4>Сортировка чисел</h4>
+            <table class="table table-bordered" id="table-sort">
                 <tr id="table-item">
                     <!--<td>1</td>
                     <td class="warning">2</td>
