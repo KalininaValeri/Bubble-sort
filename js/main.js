@@ -1,3 +1,9 @@
+/**
+ * Название функции, описание
+ * @param min - тип данных
+ * @param max - тип данных
+ * @returns {*} - тип данных
+ */
 function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
@@ -50,9 +56,21 @@ function checkElements(item1, item2) {
    
 }
 
+function outputResult() {
+    var arrayResult = [];
+    var $arrayTd = $('#table-sort').find('td');
+
+    $('#output').removeClass('invisible');
+
+    $arrayTd.each (function(index, element) {
+        arrayResult.push($(element).text());
+        console.log(arrayResult);
+    });
+
+    $('output').text(arrayResult.join(', '));
+}
+
 function sortTable() {
-    //todo сжечь огнем
-    // $('#input-src').val('88, 13, 87, 18, 54, 48, 7, 47, 65, 59');
     createTable();
 
     var $arrayTd = $('#table-sort').find('td');
@@ -62,6 +80,9 @@ function sortTable() {
         var i = 0;
 
         --lenghtArray;
+        if (lenghtArray == 0){
+            outputResult();
+        }
 
         function sort() {
             $arrayTd.removeClass('danger warning');
@@ -110,7 +131,11 @@ function sortTable() {
     }
 
     startFirstStep();
+
+
 }
+
+
 
 $(function () {
     $('#button-generate').click(function () {
@@ -119,7 +144,15 @@ $(function () {
     });
 
     $('#sorted-form').submit(function (e) {
+        var $error = $('.error-empty');
         e.preventDefault();
+
+        if ( $('#input-src').val() === ''){
+            $error.addClass('active');
+            return;
+        }
+
+        $error.removeClass('active');
         sortTable();
     });
 

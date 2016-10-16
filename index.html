@@ -20,10 +20,10 @@
             <span id="inputGroupSuccess1Status" class="sr-only">(success)</span>
             <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
             <span id="inputError2Status" class="sr-only">(error)</span>
-            <p class="text-danger">Не верно введены числа, запишитье через запятую</p>
+            <p class="text-danger error-invalid">Не верно введены числа, запишитье через запятую</p>
         </div>
         <button type="submit" class="btn btn-success">Сортировать</button>
-        <p class="text-danger">Введите целые числа или сгенерируйте</p>
+        <p class="text-danger error-empty">Введите целые числа или сгенерируйте</p>
 
     </form>
     <section>
@@ -31,28 +31,17 @@
             <h4></h4>
             <table class="table table-bordered" id="table-sort">
                 <tr id="table-item">
-                    <!--<td>1</td>
-                    <td class="warning">2</td>
-                    <td class="warning">3</td>
-                    <td>4</td>
-                    <td class="danger">5</td>
-                    <td class="danger">6</td>-->
+
                 </tr>
             </table>
         </article>
     </section>
-    <section>
+    <section class="invisible" id="output">
         <h3>Результат сортировки</h3>
-        <table class="table table-bordered">
-            <tr>
-                <td>1</td>
-                <td>2</td>
-                <td>3</td>
-                <td>4</td>
-                <td>5</td>
-                <td>6</td>
-            </tr>
-        </table>
+        <output name='result' for="input-src"></output>
+        <!--<button type="button" class="btn btn-success" title="Скопировать в буфер">
+            <span class="glyphicon glyphicon-copy"></span>
+        </button>-->
     </section>
 </main>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

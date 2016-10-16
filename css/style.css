@@ -1,3 +1,21 @@
-.bg-danger {
-  padding: 15px;
+.input-group-addon {
+  cursor: pointer;
+}
+.form-control-feedback {
+  display: none;
+}
+.has-success .form-control-feedback.glyphicon-ok {
+  display: block;
+}
+.has-error .form-control-feedback.glyphicon-remove {
+  display: block;
+}
+p {
+  display: none;
+}
+.error-empty.active {
+  display: block;
+}
+output {
+  display: inline-block;
 }
