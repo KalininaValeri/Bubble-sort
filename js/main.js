@@ -1,7 +1,7 @@
 /**
  * Возвращает случайное целое число
- * @param min - числовой, минимальная граница
- * @param max - числовой, максимальная граница
+ * @param min {number} минимальная граница
+ * @param max {number} максимальная граница
  * @returns {*} - числовой
  */
 function getRandomInt(min, max) {
@@ -24,7 +24,7 @@ function getRandomArray() {
 
 /**
  * Возвращает массив, который сформирован из элементов, записанных в input
- * @returns {Array} массив ищ чисел
+ * @returns {Array} массив из чисел
  */
 function getInputValue() {
     var value = $('#input-src').val();
@@ -42,9 +42,6 @@ function getInputValue() {
 
 /**
  * Создание таблицы
- * Обращается к функции getInputValue и результат записывает в переменную array
- * Добавляет текст в тег h4
- * для каждого эелемента массива array добавляет узел td со значением элемента массива
  */
 function createTable() {
     var array = getInputValue();
@@ -60,9 +57,9 @@ function createTable() {
 }
 
 /**
- * Устанавливает setInterval на функцию callBack, и сразу очищает интервал
+ * Устанавливает задержку на выполнение функции, и очищает интервал
  * @param callBack {function} функция, для которой нужен интервал
- * @param speed {number}
+ * @param speed {number} время, размер интервала в миллисекундах
  */
 function timeoutWrapper(callBack, speed) {
     var interval = setInterval(function () {
@@ -83,7 +80,6 @@ function outputResult() {
 
     $arrayTd.each(function (index, element) {
         arrayResult.push($(element).text());
-        console.log(arrayResult);
     });
 
     $('output').text(arrayResult.join(', '));
@@ -101,8 +97,7 @@ function sortTable() {
     function startFirstStep() {
         var i = 0;
 
-        --lenghtArray; //при каждом повторении функции startFirstStep длина массива уменьшается на 1,
-        // для того, что бы не сравнивать числа, которые уже были добавлениы в конец таблицы
+        --lenghtArray; //длина массива уменьшается на 1, не сравниваем числа, которые уже были отсортированы
 
         /*
          проверяет когда выводить результат
@@ -113,10 +108,6 @@ function sortTable() {
 
         /**
          * Выполняет попарное сравнение и перемещение элементов в таблице
-         * проверяет первое условие, если кол-во сравнений меньше, чем длина массива, то берем два элемета и присваем класс warning
-         * проверяет второе уловие если текущий элемент больше предыдущего, то присвоють класс danger и поменять эелементы местами
-         * если первое условие не выполняется, то запускает функцию newIteration, т.е переходит на следующий этап
-         * попарного сравнения элементов
          */
         function sort() {
             $arrayTd.removeClass('danger warning');
@@ -153,9 +144,6 @@ function sortTable() {
 
         /***
          * новый шаг для сравнения элементов
-         * i = 0 и с каждым шагом увеличивает значение на 1
-         * если кол-во попарных сравнений элементов меньше, чем длина массива, то запускается функцмя sort с задержкой 400млс
-         * иначе последнему элементу присвается класс success и проверяется условие, что длина массива больше нуля
          */
         function newIteration() {
             if (i < lenghtArray) {
@@ -167,10 +155,10 @@ function sortTable() {
             }
         }
 
-        sort(); // запускается фукция sort
+        sort();
     }
 
-    startFirstStep(); // запускается фукция startFirstStep
+    startFirstStep();
 }
 
 $(function () {
@@ -178,43 +166,26 @@ $(function () {
         $('.help-block').toggleClass('active');
     });
 
-    /**
-     * Слушатель на кнопку "генерировать"
-     */
     $('#button-generate').click(function () {
         var array = getRandomArray();
         $('#input-src').val(array.join(', '));
     });
 
-    /**
-     * Обработчик формы (submit)
-     */
     $('#sorted-form').submit(function (e) {
         var $wrapperInput = $('.has-feedback');
         var input = $('#input-src').val();
-        var $error = $('.error-empty');
-        var re = /^-?\d+(,{1}(\s+)?(-?){1}\d+(\s+)?)+/;
+        var re = /^-?\d+(,{1}(\s+)?(-?){1}\d+(\s+)?)+$/;
 
         e.preventDefault();
 
         $wrapperInput.removeClass('has-error has-success');
 
-        if (input === '') {
-            $error.addClass('active');
-            return;
-        }
-
-        if (re.test(input)) {
-            $wrapperInput.addClass('has-success');
-        } else {
+        if (!re.test(input)) {
             $wrapperInput.addClass('has-error');
             return;
         }
 
-
-        console.log(input);
-
-        $error.removeClass('active');
+        $wrapperInput.addClass('has-success');
         sortTable();
     });
 });

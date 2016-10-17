@@ -11,7 +11,7 @@ section {
   display: none;
 }
 .help-block article {
-  overflow: auto;
+  overflow: hidden;
 }
 .help-block.active .btn-info {
   height: 30px;
@@ -52,9 +52,6 @@ p {
   display: block;
 }
 .has-error .error-invalid {
-  display: block;
-}
-.error-empty.active {
   display: block;
 }
 output {
