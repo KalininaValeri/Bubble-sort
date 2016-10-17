@@ -36,6 +36,9 @@ section {
 ol li:first-child img {
   width: 100%;
 }
+p {
+  display: none;
+}
 .input-group-addon {
   cursor: pointer;
 }
@@ -48,8 +51,8 @@ ol li:first-child img {
 .has-error .form-control-feedback.glyphicon-remove {
   display: block;
 }
-p {
-  display: none;
+.has-error .error-invalid {
+  display: block;
 }
 .error-empty.active {
   display: block;

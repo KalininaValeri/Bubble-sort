@@ -190,13 +190,29 @@ $(function () {
      * Обработчик формы (submit)
      */
     $('#sorted-form').submit(function (e) {
+        var $wrapperInput = $('.has-feedback');
+        var input = $('#input-src').val();
         var $error = $('.error-empty');
+        var re = /^\d[0-9,\s\-e]+\d$/;
+
         e.preventDefault();
 
-        if ( $('#input-src').val() === ''){
+        $wrapperInput.removeClass('has-error has-success');
+
+        if ( input === ''){
             $error.addClass('active');
             return;
         }
+
+        if (re.test(input)) {
+            $wrapperInput.addClass('has-success');
+        } else {
+            $wrapperInput.addClass('has-error');
+            return;
+        }
+
+
+        console.log(input);
 
         $error.removeClass('active');
         sortTable();
