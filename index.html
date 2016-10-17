@@ -9,23 +9,57 @@
 <body>
 <main class="container">
     <h1 class="text-center">Сортировка пузырком</h1>
-    <form id="sorted-form">
-        <div class="form-group has-feedback">
-            <label class="control-label" for="input-src">Введите целые числа церез запятую</label>
-            <div class="input-group">
-                <span class="input-group-addon" id="button-generate">Сгенерировать</span>
-                <input type="text" class="form-control" id="input-src" aria-describedby="inputGroupSuccess1Status">
-            </div>
-            <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
-            <span id="inputGroupSuccess1Status" class="sr-only">(success)</span>
-            <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
-            <span id="inputError2Status" class="sr-only">(error)</span>
-            <p class="text-danger error-invalid">Не верно введены числа, запишитье через запятую</p>
-        </div>
-        <button type="submit" class="btn btn-success">Сортировать</button>
-        <p class="text-danger error-empty">Введите целые числа или сгенерируйте</p>
+    <section class="help-block">
+        <button type="button" class="btn btn-info" id="help">
+            <span class="help-block-question">?</span>
+            <span class="glyphicon glyphicon-menu-up" aria-hidden="true"></span>
+        </button>
+        <span>Как этим пользоваться?</span>
+        <article>
+            <ol>
+                <li>
+                    Запишите целые числа через запятую. Пример: 93, 55, 65, 9, 5, 37 <br>
+                    Или нажмите кнопу "Сгенерировать", тогда приложение автоматически создаст набор чисел, которые можно отсортировать
+                    <img src="./img/help_generate.png" alt="">
+                </li>
+                <li>
+                    Нажмите кнопку "Сортировать", тогда начнется процесс сортировки
+                </li>
+                <li>
+                    Если в таблице, яцейки светятся желтым цветом <img src="./img/help_compare.png" alt="">,
+                    значит значения сравниваютс между собой
+                </li>
+                <li>
+                    Если в таблице, ячейке светятся красным цетом <img src="./img/help_change.png" alt="">,
+                    значения меняются местами
+                </li>
+                <li>
+                    Если в таблице ячейки светяся зеленым цветом <img src="./img/help_sort.png">,
+                    значения уже отсортированы
+                </li>
+            </ol>
+        </article>
+    </section>
 
-    </form>
+    <section>
+        <form id="sorted-form">
+            <div class="form-group has-feedback">
+                <label class="control-label" for="input-src">Введите целые числа церез запятую</label>
+                <div class="input-group">
+                    <span class="input-group-addon" id="button-generate">Сгенерировать</span>
+                    <input type="text" class="form-control" id="input-src" aria-describedby="inputGroupSuccess1Status">
+                </div>
+                <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+                <span id="inputGroupSuccess1Status" class="sr-only">(success)</span>
+                <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+                <span id="inputError2Status" class="sr-only">(error)</span>
+                <p class="text-danger error-invalid">Не верно введены числа, запишитье через запятую</p>
+            </div>
+            <button type="submit" class="btn btn-success">Сортировать</button>
+            <p class="text-danger error-empty">Введите целые числа или сгенерируйте</p>
+        </form>
+    </section>
+
     <section>
         <article>
             <h4></h4>
@@ -36,6 +70,7 @@
             </table>
         </article>
     </section>
+
     <section class="invisible" id="output">
         <h3>Результат сортировки</h3>
         <output name='result' for="input-src"></output>

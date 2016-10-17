@@ -174,6 +174,10 @@ function sortTable() {
 }
 
 $(function () {
+    $('#help').click(function () {
+       $('.help-block').toggleClass('active');
+    });
+
     /**
      * Слушатель на кнопку "генерировать"
      */
