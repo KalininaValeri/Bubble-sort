@@ -1,13 +1,17 @@
 /**
- * Название функции, описание
- * @param min - тип данных
- * @param max - тип данных
- * @returns {*} - тип данных
+ * Возвращает случайное целое число
+ * @param min - числовой, минимальная граница
+ * @param max - числовой, максимальная граница
+ * @returns {*} - числовой
  */
 function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+/**
+ * Возвращает массив случайных целых чисел из 10 элементов
+ * @returns {Array}
+ */
 function getRandomArray() {
     var array = [];
 
@@ -18,6 +22,10 @@ function getRandomArray() {
     return array;
 }
 
+/**
+ * Возвращает массив, который сформирован из элементов, записанных в input
+ * @returns {Array} массив ищ чисел
+ */
 function getInputValue() {
     var value = $('#input-src').val();
     var array = [];
@@ -32,6 +40,12 @@ function getInputValue() {
     return array;
 }
 
+/**
+ * Создание таблицы
+ * Обращается к функции getInputValue и результат записывает в переменную array
+ * Добавляет текст в тег h4
+ * для каждого эелемента массива array добавляет узел td со значением элемента массива
+ */
 function createTable() {
     var array = getInputValue();
     var $tr = $('#table-item');
@@ -45,6 +59,11 @@ function createTable() {
     }
 }
 
+/**
+ * Устанавливает setInterval на функцию callBack, и сразу очищает интервал
+ * @param callBack {function} функция, для которой нужен интервал
+ * @param speed {number}
+ */
 function timeoutWrapper(callBack, speed) {
     var interval = setInterval(function () {
         callBack();
@@ -52,10 +71,10 @@ function timeoutWrapper(callBack, speed) {
     }, speed || 500);
 }
 
-function checkElements(item1, item2) {
-   
-}
-
+/**
+ * Вывод результата сортировки
+ * формирует массив из значений ячеек таблицы, выводит в тег output
+ */
 function outputResult() {
     var arrayResult = [];
     var $arrayTd = $('#table-sort').find('td');
@@ -76,14 +95,29 @@ function sortTable() {
     var $arrayTd = $('#table-sort').find('td');
     var lenghtArray = $arrayTd.length;
 
+    /**
+     * Функция запускает сортировку ячеек таблицы
+     */
     function startFirstStep() {
         var i = 0;
 
-        --lenghtArray;
+        --lenghtArray; //при каждом повторении функции startFirstStep длина массива уменьшается на 1,
+                        // для того, что бы не сравнивать числа, которые уже были добавлениы в конец таблицы
+
+        /*
+        проверяет когда выводить результат
+         */
         if (lenghtArray == 0){
             outputResult();
         }
 
+        /**
+         * Выполняет попарное сравнение и перемещение элементов в таблице
+         * проверяет первое условие, если кол-во сравнений меньше, чем длина массива, то берем два элемета и присваем класс warning
+         * проверяет второе уловие если текущий элемент больше предыдущего, то присвоють класс danger и поменять эелементы местами
+         * если первое условие не выполняется, то запускает функцию newIteration, т.е переходит на следующий этап
+         * попарного сравнения элементов
+         */
         function sort() {
             $arrayTd.removeClass('danger warning');
 
@@ -116,7 +150,13 @@ function sortTable() {
 
             newIteration();
         }
-        
+
+        /***
+         * новый шаг для сравнения элементов
+         * i = 0 и с каждым шагом увеличивает значение на 1
+         * если кол-во попарных сравнений элементов меньше, чем длина массива, то запускается функцмя sort с задержкой 400млс
+         * иначе последнему элементу присвается класс success и проверяется условие, что длина массива больше нуля
+         */
         function newIteration() {
             if (i < lenghtArray) {
                 i++;
@@ -127,22 +167,24 @@ function sortTable() {
             }
         }
 
-        sort();
+        sort(); // запускается фукция sort
     }
 
-    startFirstStep();
-
-
+    startFirstStep(); // запускается фукция startFirstStep
 }
 
-
-
 $(function () {
+    /**
+     * Слушатель на кнопку "генерировать"
+     */
     $('#button-generate').click(function () {
         var array = getRandomArray();
         $('#input-src').val(array.join(', '));
     });
 
+    /**
+     * Обработчик формы (submit)
+     */
     $('#sorted-form').submit(function (e) {
         var $error = $('.error-empty');
         e.preventDefault();
@@ -155,6 +197,4 @@ $(function () {
         $error.removeClass('active');
         sortTable();
     });
-
-
 });
