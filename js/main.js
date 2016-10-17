@@ -81,7 +81,7 @@ function outputResult() {
 
     $('#output').removeClass('invisible');
 
-    $arrayTd.each (function(index, element) {
+    $arrayTd.each(function (index, element) {
         arrayResult.push($(element).text());
         console.log(arrayResult);
     });
@@ -102,12 +102,12 @@ function sortTable() {
         var i = 0;
 
         --lenghtArray; //при каждом повторении функции startFirstStep длина массива уменьшается на 1,
-                        // для того, что бы не сравнивать числа, которые уже были добавлениы в конец таблицы
+        // для того, что бы не сравнивать числа, которые уже были добавлениы в конец таблицы
 
         /*
-        проверяет когда выводить результат
+         проверяет когда выводить результат
          */
-        if (lenghtArray == 0){
+        if (lenghtArray == 0) {
             outputResult();
         }
 
@@ -175,7 +175,7 @@ function sortTable() {
 
 $(function () {
     $('#help').click(function () {
-       $('.help-block').toggleClass('active');
+        $('.help-block').toggleClass('active');
     });
 
     /**
@@ -193,13 +193,13 @@ $(function () {
         var $wrapperInput = $('.has-feedback');
         var input = $('#input-src').val();
         var $error = $('.error-empty');
-        var re = /^\d[0-9,\s\-e]+\d$/;
+        var re = /^-?\d+(,{1}(\s+)?(-?){1}\d+(\s+)?)+/;
 
         e.preventDefault();
 
         $wrapperInput.removeClass('has-error has-success');
 
-        if ( input === ''){
+        if (input === '') {
             $error.addClass('active');
             return;
         }
